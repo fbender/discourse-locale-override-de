@@ -1,4 +1,11 @@
 pl_PL:
+  i18n:
+    transliterate:
+      rule:
+        ț: "t"
+        Ț: "t"
+        ș: "s"
+        Ș: "s"
   dates:
     short_date_no_year: "D MMM"
     short_date: "D MMM YYYY"
@@ -17,9 +24,12 @@ pl_PL:
   via: "%{username} z %{site_name}"
   is_reserved: "jest zarezerwowana"
   purge_reason: "Automatycznie usunięto z uwagi na wiek i brak weryfikacji"
+  disable_remote_images_download_reason: "Pobieranie zewnętrznych grafik zostało wyłączone z uwagi na niską ilość wolnego miejsca na dysku."
   errors:
     messages:
       too_long_validation: "ograniczono do %{max} znaków, podano %{length}."
+      invalid_boolean: "Nieprawidłowy boolean."
+      taken: "jest już zajęty"
     embed:
       load_from_remote: "Wystąpił błąd podczas wczytywania tego wpisu."
   bulk_invite:
@@ -159,6 +169,9 @@ pl_PL:
       models:
         topic:
           attributes:
+            base:
+              warning_requires_pm: "Ostrzeżenie można dołączać jedynie do prywatnych wiadomości."
+              too_many_users: "Jedno ostrzeżenie możesz wysłać tylko do pojedynczego użytkownika."
             archetype:
               cant_send_pm: "Przepraszamy, nie możesz wysłać prywatnej wiadomości do tego użytkownika."
         user:
@@ -191,7 +204,7 @@ pl_PL:
 
       Od teraz możesz &hellip;
 
-      * Edytować temat każdego tematu
+      * Edytować tytuł każdego tematu
       * Przenieść temat do innej kategorii
       * Twoje linki nie będą posiadać już atrybutu [nofollow](http://en.wikipedia.org/wiki/Nofollow)
       * Korzystać z prywatnego Salonu, kategorii która jest widoczna jedynie dla użytkowników na 3 poziomie zaufania lub wyższym
@@ -209,11 +222,11 @@ pl_PL:
     replace_paragraph: "[Zamień ten pierwszy paragraf na krórki opis nowej kategorii. Opis ten będzie wyświetlany na karcie wyboru kategorii, więc postaraj się utrzymać go poniżej 200 znaków. Póki nie zmienisz tego tekstu, ani nie utworzysz tematu, kategoria nie będzie wyświetlana na liście kategorii.]"
     post_template: "%{replace_paragraph}\n\nW kolejnych paragrafach możesz umieścić dłuższy opis, oraz opisać zasady i wytyczne jakie będą obowiązywać w tej kategorii. \n\nKilka rzeczy do rozważenia:\n\n- Czemu ma służyć ta kategoria? Dlaczego inni powinni wybierać tę kategorię dla swoich tematów?\n\n- Czym się różni od innych kategorii, które już mamy?\n\n- Czy potrzebujemy tej kategorii?\n\n- Czy powinniśmy ją połączyć z jakąś inną kategorią, lub podzielić na więcej kategorii?\n"
     errors:
-      uncategorized_parent: "Nieprzypisane nie mogą być podkategorią innej kategorii."
+      uncategorized_parent: "Inne nie mogą być podkategorią innej kategorii."
       self_parent: "Podkategoria nie może być swoim rodzicem"
       depth: "Nie możesz umieścić subkategorii w innej subkategorii"
     cannot_delete:
-      uncategorized: "Nie można usunąć Nieprzypisanych"
+      uncategorized: "Nie można usunąć kategorii Inne"
       has_subcategories: "Nie można usunąć tej kategorii ponieważ posiada podkategorie. "
       topic_exists:
         one: "Nie można usunąć tej kategorii ponieważ zawiera temat: %{topic_link}."
@@ -231,7 +244,7 @@ pl_PL:
       title: "regularny"
     elder:
       title: "starszyzna"
-    change_failed_explanation: "Twoja próba obniżenia poziomu %{user_name} do '%{new_trust_level}' była nieudana. Ten użytkownik posiada już poziom '%{current_trust_level}'. %{user_name} pozostanie na poziomie '%{current_trust_level}'"
+    change_failed_explanation: "Twoja próba obniżenia poziomu %{user_name} do '%{new_trust_level}' była nieudana. Ten użytkownik posiada już poziom '%{current_trust_level}'. %{user_name} pozostanie na poziomie '%{current_trust_level}' - jeśli chcesz to zmienić, najpierw zablokuj poziom zaufania temu użytkownikowi."
   rate_limiter:
     slow_down: "Ta akcja została wykonana zbyt wiele razy, próbuj ponownie za jakiś czas"
     too_many_requests: "Liczba wykonań tej czynności w ciągu dnia jest ograniczona. Odczekaj %{time_left} przed ponowną próbą."
@@ -347,7 +360,7 @@ pl_PL:
     update: 'Zmień hasło'
     save: 'Ustaw hasło'
     title: 'Zresetuj hasło'
-    success: "Twoje hasło zostało pomyślnie zmienione i nastąpiło zalogowanie.."
+    success: "Twoje hasło zostało pomyślnie zmienione, zalogowano."
     success_unapproved: "Zmieniłeś(-a) swoje hasło."
     continue: "Przejdź do %{site_name}"
   change_email:
@@ -421,8 +434,8 @@ pl_PL:
       title: "Zwykły temat"
     banner:
       message:
-        make: "Ten temat został ustawiony jako baner.  Będzie pojawiać się na górze każdej strony do czasu zamknięcia przez użytkownika."
-        remove: "Ten temat nie jest już banerem. Nie będzie pojawiać się na górze  każdej strony."
+        make: "Ten temat został ustawiony jako baner. Będzie pojawiać się na górze każdej strony do czasu zamknięcia przez użytkownika."
+        remove: "Ten temat nie jest już banerem. Nie będzie pojawiać się na górze każdej strony."
   unsubscribed:
     title: 'Wypisano'
     description: "Zostałeś wypisany. Nie skontaktujemy się z Tobą więcej!"
@@ -519,6 +532,9 @@ pl_PL:
     sidekiq_warning: 'Sidekiq nie działa. Wiele zadań, takich jak wysyłanie emaili, jest wykonywane asynchronicznie przez sidekiqa. Zagwarantuj, że przynajmniej jeden proces sidekiqa działa. <a href="https://github.com/mperham/sidekiq" target="_blank">Dowiedz się więcej o Sidekiqu</a>.'
     queue_size_warning: 'Długość kolejki prac to %{queue_size}. To dużo. Może to oznaczać problem z Sidekiq lub konieczność zwiększenia ilości jego procesów.'
     memory_warning: 'Twój serwer działa z mniej niż 1 GB pamięci całkowitej. Przynajmniej 1 GB pamięci jest zalecany.'
+    enable_google_logins_warning: "Używasz przestarzałej wersji uwierzytelniania: Google OpenID. Google  wyłączy OpenID 20 kwietnia 2015. Zacznij używać Google OAuth2 jak najszybciej. <a href='https://meta.discourse.org/t/configuring-google-login-for-discourse/15858' target='_blank'>Zobacz ten przewodnik, aby dowiedzieć się więcej</a>"
+    both_googles_warning: "W ustawieniach serwisu włączono zarówno enable_google_logins jak i enable_google_oauth2_logins. Wyłącz enable_google_logins."
+    google_oauth2_config_warning: 'Serwis umożliwia rejestrację i logowanie poprzez Google OAuth2 (enable_google_oauth2_logins), ale ''client id'' oraz ''client secret'' nie są jeszcze ustawione. Przejdź do <a href="/admin/site_settings">Ustawień</a> i wprowadź te wartości. <a href="https://meta.discourse.org/t/configuring-google-login-for-discourse/15858" target="_blank">Zobacz ten przewodnik, aby dowiedzieć się więcej</a>.'
     facebook_config_warning: 'Serwer jest skonfigurowany by pozwalać na rejestrację i logowanie za pomocą Facebooka (enable_facebook_logins), ale identyfikator i sekret aplikacji nie są ustawione. Przejdź do <a href="/admin/site_settings">ustawień serwisu</a> i zmień ustawienia. <a href="https://meta.discourse.org/t/configuring-facebook-login-for-discourse/13394" target="_blank">Zobacz ten poradnik by dowiedzieć się więcej</a>.'
     twitter_config_warning: 'Serwer jest skonfigurowany by pozwalać na rejestrację i logowanie za pomocą Twittera (enable_twitter_logins), ale klucz i sekret nie są ustawione. Przejdź do <a href="/admin/site_settings">ustawień serwisu</a> i zmień ustawienia. <a href="https://meta.discourse.org/t/configuring-twitter-login-for-discourse/13395" target="_blank">Zobacz ten poradnik by dowiedzieć się więcej</a>.'
     github_config_warning: 'Serwer jest skonfigurowany by pozwalać na rejestrację i logowanie za pomocą GitHuba (enable_github_logins), ale id klienta i sekret nie są ustawione. Przejdź do <a href="/admin/site_settings">ustawień serwisu</a> i zmień ustawienia. <a href="https://meta.discourse.org/t/configuring-github-login-for-discourse/13745" target="_blank">Zobacz ten poradnik by dowiedzieć się więcej</a>.'
@@ -552,10 +568,6 @@ pl_PL:
     login_required_welcome_message:
       title: "Wymagane logowanie: wiadomość powitalna"
       description: "Wiadomość powitalna wyświetlana niezalogowanym użytkownikom, gdy ustawienie 'login required' jest włączone."
-    tos_user_content_license:
-      title: "Warunki serwisu: Licencja treści"
-    tos_miscellaneous:
-      title: "Warunki serwisu: Rozmaite"
     login_required:
       title: "Login Required: Homepage"
       description: "The text displayed for unauthorized users when login is required on the site."
@@ -568,14 +580,11 @@ pl_PL:
     bottom:
       title: "Stopka każdej strony"
       description: "Kod HTML jaki zostanie dołączony na dole każdej strony."
-    tos_signup_form_message:
-      title: "Formularz rejestracji: warunki użytkowania serwisu"
-    notification_email_top:
-      title: "Nagłówek powiadomień email"
-      description: "Wiadomość jaka zostanie umieszczona na początku każdego powiadomienia email."
   site_settings:
+    censored_words: "Wskazane słowa będą automatycznie zamieniane na  &#9632;&#9632;&#9632;&#9632;"
+    delete_old_hidden_posts: "Automatycznie kasuj wpisy ukryte dłużej niż 30 dni."
     default_locale: "Domyślny język tej instancji Discourse (kod ISO 639-1)"
-    allow_user_locale: "Zezwól użytkownikom na zmianę języka interfejsu we własnych  preferencjach"
+    allow_user_locale: "Zezwól użytkownikom na zmianę języka interfejsu we własnych  ustawieniach"
     min_post_length: "Minimalna długość wpisu w znakach"
     min_private_message_post_length: "Minimalna długość wpisu w znakach dla prywatnych wiadomości"
     max_post_length: "Maksymalna długość wpisu, w znakach"
@@ -583,7 +592,7 @@ pl_PL:
     max_topic_title_length: "Maksymalna długość tytułu tematu, w znakach"
     min_private_message_title_length: "Minimalna ilość znaków w tytule prywatnej wiadomości"
     min_search_term_length: "Minimalna długość wyszukiwanego tekstu, w znakach"
-    allow_uncategorized_topics: "Pozwól na tworzenie tematów bez kategorii"
+    allow_uncategorized_topics: "Pozwól na tworzenie tematów bez kategorii."
     uncategorized_description: "Znajdują się tu wątki którym jeszcze nie przypisano odpowiedniej kategorii."
     allow_duplicate_topic_titles: "Pozwól na tworzenie tematów o identycznych tytułach."
     unique_posts_mins: "Ile minut musi upłynąć zanim użytkownik będzie mógł ponownie zrobić wpis z tą samą treścią"
@@ -599,7 +608,6 @@ pl_PL:
     ninja_edit_window: "Przez tyle sekund po utworzeniu nowego wpisu jego kolejne edycje nie będą tworzyć nowych wersji w historii wpisu."
     post_edit_time_limit: "Autor może edytować lub usunąć swój wpis przez tyle minut po jego utworzeniu. Ustawienie 0 oznacza 'zawsze'."
     edit_history_visible_to_public: "Pozwól wszystkim przeglądać poprzednie wersje edytowanych wpisów. Gdy wyłączone, jedynie obsługa/staff może."
-    delete_removed_posts_after: "Wpisy wycofane przez autora będą automatycznie usunięte po tylu godzinach. "
     max_image_width: "Maksymalna szerokość miniaturki grafiki we wpisie. "
     max_image_height: "Maksymalna wysokość miniaturki grafiki we wpisie. "
     category_featured_topics: "Number of topics displayed per category on the /categories page. After changing this value, it takes up to 15 minutes for the categories page to update."
@@ -610,10 +618,8 @@ pl_PL:
     apple_touch_icon_url: "Icon used for Apple touch devices. Recommended size is 144px by 144px."
     email_custom_headers: "A pipe-delimited list of custom email headers"
     enable_long_polling: "Message bus used for notification can use long polling"
-    long_polling_interval: "Interval before a new long poll is issued in milliseconds "
-    polling_interval: "How often should logged in user clients poll in milliseconds"
     anon_polling_interval: "How often should anonymous clients poll in milliseconds"
-    auto_track_topics_after: "Liczba milisekund zanim temat jest automatycznie dodany do śledzonych. użytkownik może nadpisać tę wartość w swoich preferencjach  (0 zawsze, -1 nigdy)"
+    auto_track_topics_after: "Liczba milisekund zanim temat jest automatycznie dodany do śledzonych. użytkownik może nadpisać tę wartość w swoich ustawieniach (0 zawsze, -1 nigdy)"
     new_topic_duration_minutes: "Global default number of minutes a topic is considered new, users can override (-1 for always, -2 for last visit)"
     flags_required_to_hide_post: "Number of flags that cause a post to be automatically hidden and PM sent to the user (0 for never)"
     notify_mods_when_user_blocked: "If a user is automatically blocked, send a message to all moderators."
@@ -657,7 +663,7 @@ pl_PL:
     email_editable: "Allow users to change their e-mail address after registration."
     default_digest_email_frequency: "How often users receive digest emails by default. They can change this setting in their preferences."
     enable_mobile_theme: "Mobile devices use a mobile-friendly theme, with the ability to switch to the full site. Disable this if you want to use a custom stylesheet that is fully responsive."
-    suppress_uncategorized_badge: "Nie pokazuj etykiety z nazwą kategorii Nieprzypisane na listach tematów."
+    suppress_uncategorized_badge: "Nie pokazuj etykiety z nazwą kategorii Inne na listach tematów."
   notification_types:
     mentioned: "%{display_username} wspomina o Tobie w %{link}"
     liked: "%{display_username} polubił(-a) Twój wpis w %{link}"
@@ -710,19 +716,20 @@ pl_PL:
     pinned_globally_enabled: "Temat został przypięty globalnie. Będzie pojawiać się na początku swojej kategorii i wszystkich list dopóki nie zostanie odpięty przez obsługę lub prywatnie przez użytkownika."
     pinned_globally_disabled: "Temat został odpięty. Już nie będzie wyświetlany na górze swojej kategorii."
     visible_enabled: "Temat jest ponownie widoczny i będzie pojawiać się na listach tematów."
-    visible_disabled: "Ten temat został ustawiony jako niewidoczny. Nie pojawi się na żadnej liście tematów. Aby go wyświetlić wymagana będzie znajomość linku bezpośredniego. "
+    visible_disabled: "Ten temat został ustawiony jako niewidoczny. Nie pojawi się na żadnej liście tematów. Aby go wyświetlić wymagana będzie znajomość linku bezpośredniego."
   login:
     not_approved: "Twoje konto nie zostało jeszcze aktywowane. Zostaniesz powiadomiony emailem gdy będziesz mógł się zalogować."
     incorrect_username_email_or_password: "Niepoprawna nazwa użytkownika, email lub hasło"
     wait_approval: "Dziękujemy za rejestrację. Powiadomimy Cię gdy Twoje konto zostanie aktywowane."
     active: "Twoje konto zostało aktywowane i jest gotowe do użycia."
-    activate_email: "Prawie skończone! Wysłaliśmy email aktywacyjny na adres <b>%{email}</b>. Wykonaj instrukcje w nim zawarte by aktywować Twoje konto."
     not_activated: "Nie możesz się jeszcze zalogować. Wysłaliśmy do Ciebie email aktywacyjny. Wykonaj instrukcje w nim zawarte by aktywować Twoje konto."
     errors: "%{errors}"
     not_available: "Niedostępny. Może spróbuj %{suggestion}?"
     something_already_taken: "Coś poszło źle. Możliwe, że ta nazwa użytkownika lub email są już zarejestrowane. Spróbuj użyć procedury przypominania hasła."
     omniauth_error: "Przepraszamy, wystąpił błąd podczas uwierzytelniania Twojego konta %{strategy}. Może nie zaakceptowałeś uwierzytelnienia?"
     omniauth_error_unknown: "Wystąpił błąd podczas logowania, spróbuj ponownie."
+    password_too_long: "Hasła są ograniczone do 200 znaków."
+    close_window: "Uwierzytelnianie zakończone. Aby kontynuować, zamknij to okno."
   user:
     username:
       short: "music zawierać co najmniej %{min} znaków"
@@ -746,18 +753,25 @@ pl_PL:
       %{invite_link}
 
       To zaproszenie zostało wysłane przez zaufanego użytkownika, nie musisz się logować.
+  invite_password_instructions:
+    subject_template: "Ustaw hasło dla swojego konta na %{site_name}"
+    text_body_template: |
+      Dziękujemy za zaakceptowanie zaproszenia na  %{site_name} -- witaj!
+
+      Aby wybrać swoje hasło i zalogować się do serwisu kliknij link:
+      %{base_url}/users/password-reset/%{email_token}
   test_mailer:
     subject_template: "[%{site_name}] Test dostarczania poczty"
   flags_reminder:
     flags_were_submitted:
-      one: "Istnieją flagi dodane ponad 1 godzinę temu."
-      few: "Istnieją flagi dodane %{count} godziny temu."
-      other: "Istnieją flagi dodane %{count} godzin temu."
+      one: "Flagi dodane godzinę temu."
+      few: "Flagi dodane ponad %{count} godziny temu."
+      other: "Flagi dodane ponad %{count} godzin temu."
     post_number: "wpis"
     subject_template:
       one: "1 flaga oczekuje na reakcję"
       few: "%{count} flagi oczekują na reakcję"
-      other: "%{count} flag oczekuje na reakcję"
+      other: "%{count} flagi oczekują na reakcję"
   flag_reasons:
     off_topic: "Twój wpis został oznaczony jako **nie-na-temat**: społeczność uważa, że nie pasuje on do tematu zdefiniowanego przez tytuł i treść pierwszego wpisu w wątku."
     spam: "Twój wpis został oznaczony jako **spam**: społeczność uważa, że jest to nieprzydatna reklama bez związku z tematem."
@@ -777,12 +791,34 @@ pl_PL:
         Miłego korzystania!
     welcome_invite:
       subject_template: "Witaj na %{site_name}!"
-    export_succeeded:
-      subject_template: "Eksportowanie zostało zakończone."
-      text_body_template: "Eksport się powiódł."
-    import_succeeded:
-      subject_template: "Importowanie zostało zakończone."
-      text_body_template: "Import się powiódł."
+      text_body_template: "Dziękujemy za przyjęcie zaproszenia do %{site_name} – witamy!\n\nTwoja automatycznie wygenerowana nazwa użytkownika: **%{username}**. Możesz ją zmienić w każdej chwili w [swoich ustawieniach][prefs].\n\nAby zalogować się:\n\nA) Zaloguj się przyciskiem logowania przez zewnętrzny serwis. Pamiętaj, aby podpięty pod wybrany serwis adres e-mail **był taki sam** jak ten na który dostałeś swoje zaproszenie. W przeciwnym wypadku nie będziemy mogli stwierdzić, że ty to Ty! \n\nB) Stwórz unikalne hasło w [swoich ustawieniach][prefs] i zaloguj się przy jego pomocy.\n\n%{new_user_tips}\n\nWierzymy w [cywilizowane zachowanie](%{base_url}/guidelines) jako podstawę naszej społeczności.\n\n\
+        Miłego uczestnictwa! \n\n[prefs]: %{user_preferences_url}\n"
+    backup_succeeded:
+      subject_template: "Kopia zapasowa jest gotowa"
+      text_body_template: "Kopia zapasowa została wykonana pomyślnie.\nOdwiedź [admin > kopie zapasowe](/admin/backups) aby ją pobrać."
+    backup_failed:
+      subject_template: "Kopia zapasowa nieudana"
+      text_body_template: |
+        Tworzenie kopii zapasowej było nieudane.
+
+        Log poniżej:
+
+        ```
+        %{logs}
+        ```
+    restore_succeeded:
+      subject_template: "Przywrócenie udane"
+      text_body_template: "Przywrócenie zakończyło się sukcesem."
+    restore_failed:
+      subject_template: "Przywracanie nieudane"
+      text_body_template: |
+        Przywrócenie z kopii zapasowej było nieudane.
+
+        Log poniżej:
+
+        ```
+        %{logs}
+        ```
     too_many_spam_flags:
       subject_template: "Nowe konto zablokowane"
     blocked_by_staff:
@@ -803,6 +839,8 @@ pl_PL:
         few: "%{count} użytkowników czeka na zatwierdzenie"
         other: "%{count} użytkowników czeka na zatwierdzenie"
   unsubscribe_link: "Możesz zrezygnować z powiadomień email w [ustawieniach konta](%{user_preferences_url})."
+  subject_re: "Re: "
+  subject_pm: "[PW] "
   user_notifications:
     previous_discussion: "Previous Replies"
     unsubscribe:
@@ -853,6 +891,15 @@ pl_PL:
 
         ---
         %{respond_instructions}
+    user_posted_pm:
+      subject_template: "[%{site_name}] [PW] %{topic_title}"
+      text_body_template: |
+        %{message}
+
+        %{context}
+
+        ---
+        %{respond_instructions}
     digest:
       why: "Krótkie podsumowanie aktywności na %{site_link} od twojej ostatniej wizyty w dniu %{last_seen_at}."
       subject_template: "[%{site_name}] Podsumowanie dla %{date}"
@@ -887,6 +934,13 @@ pl_PL:
 
         Kliknij odnośnik poniżej by ustawić hasło:
         %{base_url}/users/password-reset/%{email_token}
+    account_created:
+      subject_template: "[%{site_name}] Twoje nowe konto"
+      text_body_template: |
+        Utworzyliśmy Twoje konto na %{site_name}
+
+        Kliknij na linku poniżej, aby ustawić swoje hasło:
+        %{base_url}/users/password-reset/%{email_token}
     authorize_email:
       subject_template: "[%{site_name}] Potwierdź nowy adres email"
       text_body_template: |
@@ -906,13 +960,16 @@ pl_PL:
         Jeśli powyższy link nie jest klikalny, spróbuj skopiować i wkleić go do pasku adresu Twojej przeglądarki.
   page_not_found:
     title: "Strona, którą chciałeś odwiedzić, nie istnieje lub jest prywatna."
+    popular_topics: "Popularne"
+    recent_topics: "Ostatnie"
+    see_more: "Więcej"
+    search_title: "Szukaj w serwisie"
+    search_google: "Google"
   terms_of_service:
-    user_content_license: |
-      User contributions are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US). Without limiting any of those representations or warranties, %{company_short_name} has the right (though not the obligation) to, in %{company_short_name}’s sole discretion (i) refuse or remove any content that, in %{company_short_name}’s reasonable opinion, violates any %{company_short_name} policy or is in any way harmful or objectionable, or (ii) terminate or deny access to and use of the Website to any individual or entity for any reason, in %{company_short_name}’s sole discretion. %{company_short_name} will have no obligation to provide a refund of any amounts previously paid.
-    miscellaneous: "This Agreement constitutes the entire agreement between %{company_short_name} and you concerning the subject matter hereof, and they may only be modified by a written amendment signed by an authorized executive of %{company_short_name}, or by the posting by %{company_short_name} of a revised version. Except to the extent applicable law, if any, provides otherwise, this Agreement, any access to or use of the Website will be governed by the laws of the state of California, U.S.A., excluding its conflict of law provisions, and the proper venue for any disputes arising out of or relating to any of the same will be the state and federal courts located in San Francisco County, California. Except for claims for injunctive or equitable relief or claims regarding intellectual property rights (which may be brought in any competent court without the posting of a bond), any dispute arising under this Agreement shall be finally settled in accordance with the Comprehensive Arbitration Rules of the Judicial Arbitration and Mediation Service, Inc. (“JAMS”) by three arbitrators appointed in accordance with such Rules. The arbitration shall take place in San Francisco, California, in the English language and the arbitral decision may be enforced in any court. The prevailing party in any action or proceeding to enforce this Agreement shall be entitled to costs and attorneys’ fees. If any part of this Agreement is held invalid or unenforceable, that part will be construed to reflect the parties’ original intent, and the remaining portions will remain in full force and effect. A waiver by either party of any term or condition of this Agreement or any breach thereof, in any one instance, will not waive such term or condition or any subsequent breach thereof. You may assign your rights under this Agreement to any party that consents to, and agrees to be bound by, its terms and conditions; %{company_short_name} may assign its rights under this Agreement without condition. This Agreement will be binding upon and will inure to the benefit of the parties, their successors and permitted assigns."
     signup_form_message: 'Przeczytałem i zgadzam się z <a href="/tos" target="_blank">Regulaminem Serwisu</a>.'
   deleted: 'usunięte'
   upload:
+    edit_reason: "lokalne kopie pobranych obrazów"
     unauthorized: "Sorry, the file you are trying to upload is not authorized (authorized extensions: %{authorized_extensions})."
     pasted_image_filename: "Pasted image"
     attachments:
