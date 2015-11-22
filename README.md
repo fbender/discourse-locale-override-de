@@ -1,9 +1,9 @@
-# discourse-locale-override
+# discourse-locale-override-de
 
 Simple plugin/boilerplate to override some of translations keys in Discourse and persist them between Docker rebuilds.
 Can be used by translators, early adopters of young locales or communities with specific slang.
 
-**This repository contains only `pl_PL` locale. See FAQ below if you need to override a different one.**
+This repository is based on lidel/discourse-locale-override, history was rewritten to squash some commits not relevant to this fork, which is `de`-only.
 
 ## Installation on top of Docker image
 
@@ -15,8 +15,8 @@ hooks:
     - exec:
         cd: $home/plugins
         cmd:
-          - mkdir -p plugins
-          - git clone https://github.com/lidel/discourse-locale-override.git
+          - git clone https://github.com/discourse/docker_manager.git
+          - git clone https://github.com/fbender/discourse-locale-override-de.git
 ```
 
 Rebuild Discourse: `/var/discourse/launcher rebuild app`
@@ -26,7 +26,7 @@ Rebuild Discourse: `/var/discourse/launcher rebuild app`
 ### How can I use this to override locale X?
 
 1. Fork this repository
-2. Remove `config/locales/*.pl_PL.yml` files *(optional)*
+2. Remove `config/locales/*.de.yml` files *(optional)*
 3. Add `config/locales/*.xx_XX.yml` ones    
   **Warning:** `xx_XX` should be the language code you want to *override*.    
   Files with this locale code must be already present upstream at  [discourse/config/locales](https://github.com/discourse/discourse/tree/master/config/locales).    
